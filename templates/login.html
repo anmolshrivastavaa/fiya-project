@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIYA - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #667eea, #764ba2);
+      color: #fff;
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #2d2d6e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f0e6ff;
+      transform: scale(1.1);
+    }
+
+    /* Login Form Styling */
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .form-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .form-container input {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container input:focus {
+      background-color: #f0e6ff;
+    }
+
+    .form-container button {
+      padding: 12px 30px;
+      background-color: #ffffff;
+      color: #764ba2;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #f0e6ff;
+      transform: translateY(-5px);
+    }
+
+    .form-container .switch-link {
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+
+    .form-container .switch-link a {
+      text-decoration: none;
+      color: #f0e6ff;
+      transition: color 0.3s;
+    }
+
+    .form-container .switch-link a:hover {
+      color: #764ba2;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FIYA</div>
+    <ul>
+      <li><a href="/signup">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="form-container">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="password" name="password" placeholder="Enter your password" required>
+      <button type="submit">Login</button>
+    </form>
+    <div class="switch-link">
+      Don't have an account? <a href="/signup">Sign Up</a>
+    </div>
+  </div>
+
+</body>
+</html>
+

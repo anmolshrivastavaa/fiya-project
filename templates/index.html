@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIYA - Find Your Ally</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #667eea, #764ba2);
+      color: #fff;
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #2d2d6e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f0e6ff;
+      transform: scale(1.1);
+    }
+
+    /* Hero Section Styling */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      letter-spacing: 3px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      line-height: 1.6;
+      animation: fadeInUp 1.5s ease-out;
+      margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+      animation: fadeInUp 2s ease-out;
+    }
+
+    .cta-buttons a {
+      text-decoration: none;
+      margin: 0 15px;
+      padding: 12px 30px;
+      background-color: #ffffff;
+      color: #764ba2;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-buttons a:hover {
+      background-color: #f0e6ff;
+      transform: translateY(-5px);
+    }
+
+    /* About Section Styling */
+    .about-section {
+      background-color: #ffffff;
+      color: #333;
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Footer Styling */
+    footer {
+      background-color: #2d2d6e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #f0e6ff;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FIYA</div>
+    <ul>
+      <li><a href="/signup">Sign Up</a></li>
+      <li><a href="/login">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>FIYA - Find Your Ally</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros neque. Ut scelerisque orci a efficitur placerat. Vivamus vel libero neque.</p>
+    <div class="cta-buttons">
+      <a href="/signup">Get Started</a>
+      <a href="/login">Login</a>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="about-section">
+    <h2>What is FIYA?</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 FIYA. All rights reserved. | <a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
+

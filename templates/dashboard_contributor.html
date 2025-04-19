@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - FIYA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #667eea, #764ba2);
+      color: #fff;
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #2d2d6e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f0e6ff;
+      transform: scale(1.1);
+    }
+
+    /* Dashboard Content */
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .profile-section h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .profile-section p {
+      font-size: 1.1rem;
+      color: #dcdcdc;
+    }
+
+    /* Project Section */
+    .projects {
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .project {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .project:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .project h4 {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .project p {
+      color: #dcdcdc;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .project button {
+      padding: 10px 20px;
+      background-color: #764ba2;
+      color: white;
+      border-radius: 30px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .project button:hover {
+      background-color: #667eea;
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FIYA</div>
+    <ul>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+  
+    <!-- Projects Section -->
+    <h2>Available Projects</h2>
+    <div class="projects">
+      {% for project in projects %}
+        <div class="project">
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.description }}</p>
+          <form action="{{ url_for('apply_project', project_id=project.id) }}" method="POST">
+            <button type="submit">Apply</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</html>

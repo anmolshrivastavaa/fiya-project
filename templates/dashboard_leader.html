@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIYA - Leader Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #667eea, #764ba2);
+      color: #fff;
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #2d2d6e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f0e6ff;
+      transform: scale(1.1);
+    }
+
+    /* Leader Dashboard Styling */
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .dashboard-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .dashboard-container .greeting {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .dashboard-container .projects {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .dashboard-container .projects ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .dashboard-container .projects ul li {
+      background-color: rgba(0, 0, 0, 0.4);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .dashboard-container .projects ul li:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .dashboard-container .projects ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .dashboard-container .button-container {
+      margin-top: 30px;
+    }
+
+    .dashboard-container .button-container a {
+      padding: 12px 30px;
+      background-color: #764ba2;
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .dashboard-container .button-container a:hover {
+      background-color: #667eea;
+      transform: translateY(-5px);
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FIYA</div>
+    <ul>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Leader Dashboard Content -->
+  <div class="dashboard-container">
+    <h2>Welcome, Leader Dashboard</h2>
+    <p class="greeting">Hello, <span>{{ user_name }}</span>!</p>
+
+    <!-- Displaying the projects -->
+    <div class="projects">
+      <h3>Your Projects</h3>
+      <ul>
+        {% if projects %}
+          {% for project in projects %}
+            <li>
+              <a href="/project/{{ project.id }}">{{ project.title }}</a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li>No projects found. Start a new project today!</li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Button to Create New Project -->
+    <div class="button-container">
+      <a href="/create-project">Create New Project</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
