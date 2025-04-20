@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FIYA - Dashboard (Contributor)</title>
+  <title>FIYA - Edit Project</title>
   <style>
+    /* Include the theme CSS here directly */
     body, html {
       margin: 0;
       padding: 0;
@@ -59,25 +60,33 @@
       border-radius: 8px;
     }
 
-    .project-card {
+    form {
       background-color: #f0f0f0;
-      margin: 10px 0;
-      padding: 15px;
+      padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
     button {
-      padding: 10px 20px;
-      background-color: #2d2d6e;
+      background-color: #764ba2;
       color: white;
-      border: none;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #4545a2;
+      background-color: #667eea;
     }
 
     footer {
@@ -99,20 +108,23 @@
 </nav>
 
 <div class="dashboard-container">
-  <h1>Welcome, {{ current_user.username }}!</h1>
-  <h2>Available Projects</h2>
+  <h1>Edit Project</h1>
 
-  {% for project in projects %}
-    <div class="project-card">
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
-      <p><strong>Leader:</strong> {{ project.leader_name }}</p>
-      <form action="{{ url_for('apply_project', project_id=project.id) }}" method="POST">
-        <button type="submit">Apply for Project</button>
-      </form>
-    </div>
-  {% endfor %}
+  <!-- Display form to edit project -->
+  <form method="POST" action="{{ url_for('edit_project', project_id=project.id) }}">
+    <label for="title">Project Title</label>
+    <input type="text" id="title" name="title" value="{{ project.title }}" required>
+
+    <label for="description">Project Description</label>
+    <textarea id="description" name="description" rows="5" required>{{ project.description }}</textarea>
+
+    <button type="submit">Update Project</button>
+  </form>
 </div>
+
+<footer>
+  <p>&copy; 2025 FIYA - All Rights Reserved</p>
+</footer>
 
 </body>
 </html>

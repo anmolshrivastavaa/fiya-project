@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FIYA - Find Your Ally</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
@@ -22,10 +23,13 @@
       padding: 20px;
       background-color: #2d2d6e;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     nav .logo {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: white;
       font-weight: bold;
       letter-spacing: 2px;
@@ -38,19 +42,19 @@
     }
 
     nav ul li {
-      margin: 0 15px;
+      margin: 0 20px;
     }
 
     nav ul li a {
       text-decoration: none;
-      color: white;
+      color: #0d0914; /* Adjusted text color for visibility */
       font-size: 1.1rem;
       letter-spacing: 1px;
       transition: color 0.3s, transform 0.3s;
     }
 
     nav ul li a:hover {
-      color: #f0e6ff;
+      color: #ffffff; /* Hover color to contrast with background */
       transform: scale(1.1);
     }
 
@@ -67,11 +71,15 @@
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-      margin-bottom: 15px;
-      letter-spacing: 3px;
-      animation: fadeInUp 1s ease-out;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 4px solid rgba(255, 255, 255, 0.75);
+      animation: typing 4s steps(40, end) 1s forwards, blink 0.8s infinite;
     }
 
     .hero p {
@@ -165,6 +173,21 @@
       }
     }
 
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.5rem;
@@ -190,24 +213,23 @@
   <!-- Hero Section -->
   <div class="hero">
     <h1>FIYA - Find Your Ally</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros neque. Ut scelerisque orci a efficitur placerat. Vivamus vel libero neque.</p>
+    <p>Empowering entrepreneurs by matching the right skills, time, and location for optimal team-building. Build your dream team with FIYA.</p>
     <div class="cta-buttons">
       <a href="/signup">Get Started</a>
-      <a href="/login">Login</a>
+      
     </div>
   </div>
 
   <!-- About Section -->
   <div class="about-section">
     <h2>What is FIYA?</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <p>FIYA is a platform dedicated to connecting new-age entrepreneurs and skilled individuals with the perfect team. Whether you're a leader looking to find collaborators or a contributor seeking meaningful projects, FIYA helps match you based on certifications, availability, and location to build the best team possible.</p>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 FIYA. All rights reserved. | <a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a></p>
+    <p>&copy; 2025 FIYA. All rights reserved.</p>
   </footer>
 
 </body>
 </html>
-

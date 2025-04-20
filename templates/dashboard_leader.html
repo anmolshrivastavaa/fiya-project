@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FIYA - Leader Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>FIYA - Dashboard (Leader)</title>
   <style>
     body, html {
       margin: 0;
@@ -14,14 +13,12 @@
       color: #fff;
     }
 
-    /* Navbar Styling */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px;
       background-color: #2d2d6e;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     nav .logo {
@@ -45,7 +42,6 @@
       text-decoration: none;
       color: white;
       font-size: 1.1rem;
-      letter-spacing: 1px;
       transition: color 0.3s, transform 0.3s;
     }
 
@@ -54,129 +50,117 @@
       transform: scale(1.1);
     }
 
-    /* Leader Dashboard Styling */
     .dashboard-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 80vh;
-      text-align: center;
-      padding: 0 20px;
-      animation: fadeIn 1s ease-out;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 8px;
     }
 
-    .dashboard-container h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    .dashboard-container .greeting {
-      font-size: 1.5rem;
-      margin-bottom: 30px;
-      color: white;
-    }
-
-    .dashboard-container .projects {
-      margin-top: 20px;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .dashboard-container .projects ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .dashboard-container .projects ul li {
-      background-color: rgba(0, 0, 0, 0.4);
+    .project-card {
+      background-color: #f0f0f0;
       margin: 10px 0;
       padding: 15px;
       border-radius: 8px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .dashboard-container .projects ul li:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: scale(1.05);
-    }
-
-    .dashboard-container .projects ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .dashboard-container .button-container {
-      margin-top: 30px;
-    }
-
-    .dashboard-container .button-container a {
-      padding: 12px 30px;
+    .project-card button {
       background-color: #764ba2;
       color: white;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    .dashboard-container .button-container a:hover {
+    .project-card button:hover {
       background-color: #667eea;
-      transform: translateY(-5px);
     }
 
-    /* Animation Keyframes */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    .applicant-list {
+      background-color: #e8e8e8;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .applicant-list p {
+      margin: 5px 0;
+    }
+
+    footer {
+      background-color: #2d2d6e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .create-project-btn {
+      background-color: #667eea;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 20px;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .create-project-btn:hover {
+      background-color: #764ba2;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">FIYA</div>
-    <ul>
-      <li><a href="/logout">Logout</a></li>
-    </ul>
-  </nav>
+<nav>
+  <div class="logo">FIYA</div>
+  <ul>
+    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  </ul>
+</nav>
 
-  <!-- Leader Dashboard Content -->
-  <div class="dashboard-container">
-    <h2>Welcome, Leader Dashboard</h2>
-    <p class="greeting">Hello, <span>{{ user_name }}</span>!</p>
+<div class="dashboard-container">
+  <h1>Welcome, {{ current_user.username }}!</h1>
 
-    <!-- Displaying the projects -->
-    <div class="projects">
-      <h3>Your Projects</h3>
-      <ul>
-        {% if projects %}
-          {% for project in projects %}
-            <li>
-              <a href="/project/{{ project.id }}">{{ project.title }}</a>
-            </li>
+  <!-- Create New Project Button -->
+  <a href="{{ url_for('create_project') }}" class="create-project-btn">Create New Project</a>
+
+  <h2>Your Projects</h2>
+
+  {% for project in projects %}
+    <div class="project-card">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+
+      <!-- Delete Project Form -->
+      <form action="{{ url_for('delete_project', project_id=project.id) }}" method="POST">
+        <button type="submit">Delete Project</button>
+      </form>
+
+      <h4>Applicants</h4>
+      {% if project_applications[project.id] %}
+        <div class="applicant-list">
+          {% for applicant in project_applications[project.id] %}
+            <p>{{ applicant.username }} - Match Score: {{ applicant.match_score }}%</p>
           {% endfor %}
-        {% else %}
-          <li>No projects found. Start a new project today!</li>
-        {% endif %}
-      </ul>
+        </div>
+      {% else %}
+        <p>No applicants yet.</p>
+      {% endif %}
     </div>
+  {% endfor %}
+</div>
 
-    <!-- Button to Create New Project -->
-    <div class="button-container">
-      <a href="/create-project">Create New Project</a>
-    </div>
-  </div>
 
 </body>
 </html>
-
